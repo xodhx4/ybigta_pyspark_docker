@@ -15,6 +15,10 @@ RUN wget https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh -O ~/
 ENV ANACONDA_HOME /opt/conda
 ENV PATH $ANACONDA_HOME/bin:$PATH
 
+COPY jupyter_init.sh /root/
+RUN souece /root/jupyter_init.sh
+COPY jupyter_notebook_config.py /root/.jupyter/
+
 CMD jupyter notebook
 
 
