@@ -1,4 +1,5 @@
 jupyter notebook --generate-config
+# Change 'admin' to 'YOUTPASSWORD'
 jupyter notebook password << END
 admin
 admin
