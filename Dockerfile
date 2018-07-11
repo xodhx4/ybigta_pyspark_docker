@@ -16,7 +16,7 @@ ENV ANACONDA_HOME /opt/conda
 ENV PATH $ANACONDA_HOME/bin:$PATH
 
 COPY jupyter_init.sh /root/
-RUN souece /root/jupyter_init.sh
+RUN source /root/jupyter_init.sh
 COPY jupyter_notebook_config.py /root/.jupyter/
 
 CMD jupyter notebook
