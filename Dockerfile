@@ -35,7 +35,7 @@ RUN apt-get update && apt-get install -yqq \
     make \
     openssh-client \
     openssh-server && \
-    service start ssh && \
+    service ssh start && \
     cd /usr/local && \
     wget https://github.com/google/protobuf/releases/download/v2.6.1/protobuf-2.6.1.tar.gz && \
     tar xvzf protobuf-2.6.1.tar.gz && \
