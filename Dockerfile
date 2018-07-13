@@ -79,4 +79,12 @@ ENV PYSPARK_DRIVER_PYTHON jupyter
 ENV PYSPARK_DRIVER_PYTHON_OPTS notebook
 ENV PATH $SPARK_HOME/bin:$PATH
 
+RUN cd $HOME && \
+    wget http://apache.mirror.cdnetworks.com/hive/hive-2.3.3/apache-hive-2.3.3-bin.tar.gz && \
+    tar xvzf apache-hive-2.3.3-bin.tar.gz && \
+    ln -s apache-hive-2.3.3-bin hive && \
+    rm apache-hive-2.3.3-bin.tar.gz
+COPY hive-env.sh $HOME/hive/conf/hive-env.sh
+COPY hive-site.xml $HOME/hive/conf/hive-site.xml
+
 ENTRYPOINT sh /root/start.sh
