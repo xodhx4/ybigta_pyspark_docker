@@ -86,5 +86,7 @@ RUN cd $HOME && \
     rm apache-hive-2.3.3-bin.tar.gz
 COPY hive-env.sh /root/hive/conf/hive-env.sh
 COPY hive-site.xml /root/hive/conf/hive-site.xml
+COPY hive_init.sh /root/
+RUN sh /root/hive_init.sh
 
 ENTRYPOINT sh /root/start.sh
