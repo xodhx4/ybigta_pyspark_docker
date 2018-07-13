@@ -32,8 +32,9 @@ RUN apt-get update && apt-get install -yqq \
 RUN apt-get update && apt-get install -yqq \
     gcc \
     g++ \
-    ssh \
-    make && \
+    make \
+    openssh-client \
+    openssh-server && \
     cd /usr/local && \
     wget https://github.com/google/protobuf/releases/download/v2.6.1/protobuf-2.6.1.tar.gz && \
     tar xvzf protobuf-2.6.1.tar.gz && \
@@ -52,7 +53,6 @@ ENV HADOOP_HOME /root/hadoop
 ENV HADOOP_CONFIG_HOME $HADOOP_HOME/etc/hadoop
 ENV PATH $HADOOP_HOME/bin:$PATH
 
-# COPY hadoop-env.sh /root/hadoop/etc/hadoop/hadoop-env.sh
 # RUN echo "localhost" >> masters
 # COPY core-site.xml /root/hadoop/etc/hadoop/core-site.xml
 # COPY hdfs-site.xml /root/hadoop/etc/hadoop/hdfs-site.xml
