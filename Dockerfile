@@ -35,7 +35,6 @@ RUN apt-get update && apt-get install -yqq \
     make \
     openssh-client \
     openssh-server && \
-    service ssh start && \
     cd /usr/local && \
     wget https://github.com/google/protobuf/releases/download/v2.6.1/protobuf-2.6.1.tar.gz && \
     tar xvzf protobuf-2.6.1.tar.gz && \
@@ -59,3 +58,5 @@ COPY core-site.xml /root/hadoop/etc/hadoop/core-site.xml
 COPY hdfs-site.xml /root/hadoop/etc/hadoop/hdfs-site.xml
 COPY mapred-site.xml /root/hadoop/etc/hadoop/mapred-site.xml
 COPY yarn-site.xml /root/hadoop/etc/hadoop/yarn-site.xml
+
+ENTRYPOINT service ssh start
