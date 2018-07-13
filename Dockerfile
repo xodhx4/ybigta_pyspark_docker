@@ -69,7 +69,7 @@ RUN cd $HOME && \
     conda install pip -y && \
     pip install msgpack && \
     pip install py4j && \
-    wget wget http://apache.mirror.cdnetworks.com/spark/spark-2.3.0/spark-2.3.0-bin-hadoop2.7.tgz && \
+    wget http://apache.mirror.cdnetworks.com/spark/spark-2.3.0/spark-2.3.0-bin-hadoop2.7.tgz && \
     tar xvzf spark-2.3.0-bin-hadoop2.7.tgz && \
     ln -s spark-2.3.0-bin-hadoop2.7 spark && \
     rm spark-2.3.0-bin-hadoop2.7.tgz
