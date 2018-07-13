@@ -65,4 +65,18 @@ COPY start.sh /root/
 RUN sh /root/ssh_init.sh && \
     $HADOOP_HOME/bin/hdfs namenode -format
 
+RUN cd $HOME && \
+    conda install pip -y && \
+    pip install msgpack && \
+    pip install py4j && \
+    wget wget http://apache.mirror.cdnetworks.com/spark/spark-2.3.0/spark-2.3.0-bin-hadoop2.7.tgz && \
+    tar xvzf spark-2.3.0-bin-hadoop2.7.tgz && \
+    ln -s spark-2.3.0-bin-hadoop2.7 spark && \
+    rm spark-2.3.0-bin-hadoop2.7.tgz
+COPY spark-env.sh /root/spark/conf/spark-env.sh
+ENV SPARK_HOME /root/spark
+ENV PYSPARK_DRIVER_PYTHON jupyter
+ENV PYSPARK_DRIVER_PYTHON_OPTS notebook
+ENV PATH $SPARK_HOME/bin:$PATH
+
 ENTRYPOINT sh /root/start.sh
