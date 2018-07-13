@@ -2,33 +2,33 @@ FROM ubuntu:16.04
 
 MAINTAINER Taeoh Kim <kimtaeoh95@gmail.com>
 
+# Install anaconda 3.5.2
 RUN apt-get update && apt-get install -yqq \
     wget \
     bzip2 \
-    git
-# RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh -O ~/anaconda.sh && \
-#     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
-#     rm ~/anaconda.sh
-RUN wget https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh -O ~/anaconda.sh && \
+    git && \
+    wget https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh -O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
     rm ~/anaconda.sh
 ENV ANACONDA_HOME /opt/conda
 ENV PATH $ANACONDA_HOME/bin:$PATH
 
+# Install jupyter notebook
 COPY jupyter_init.sh /root/
 RUN sh /root/jupyter_init.sh
 COPY jupyter_notebook_config.py /root/.jupyter/
 
-# CMD jupyter notebook
-
+# Install java
 RUN apt-get update && apt-get install -yqq \
     openjdk-8-jdk
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV PATH $JAVA_HOME/bin:$PATH
 
+# Install scala
 RUN apt-get update && apt-get install -yqq \
     scala
 
+# Install protobuf
 RUN apt-get update && apt-get install -yqq \
     gcc \
     g++ \
@@ -45,6 +45,7 @@ RUN apt-get update && apt-get install -yqq \
     make install && \
     ldconfig
 
+# Install hadoop
 RUN cd $HOME && \
     wget http://apache.mirror.cdnetworks.com/hadoop/common/hadoop-2.9.0/hadoop-2.9.0.tar.gz && \
     tar xvzf hadoop-2.9.0.tar.gz && \
@@ -65,6 +66,7 @@ COPY start.sh /root/
 RUN sh /root/ssh_init.sh && \
     $HADOOP_HOME/bin/hdfs namenode -format
 
+# Install spark
 RUN cd $HOME && \
     conda install pip -y && \
     pip install msgpack && \
@@ -79,6 +81,7 @@ ENV PYSPARK_DRIVER_PYTHON jupyter
 ENV PYSPARK_DRIVER_PYTHON_OPTS notebook
 ENV PATH $SPARK_HOME/bin:$PATH
 
+# Install hive
 RUN cd $HOME && \
     wget http://apache.mirror.cdnetworks.com/hive/hive-2.3.3/apache-hive-2.3.3-bin.tar.gz && \
     tar xvzf apache-hive-2.3.3-bin.tar.gz && \
@@ -89,4 +92,5 @@ COPY hive-site.xml /root/hive/conf/hive-site.xml
 COPY hive_init.sh /root/
 RUN sh /root/hive_init.sh
 
+# Running start.sh when make new container
 ENTRYPOINT sh /root/start.sh
