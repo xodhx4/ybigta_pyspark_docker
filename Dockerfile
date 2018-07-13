@@ -54,10 +54,16 @@ ENV HADOOP_HOME /root/hadoop
 ENV HADOOP_CONFIG_HOME $HADOOP_HOME/etc/hadoop
 ENV PATH $HADOOP_HOME/bin:$PATH
 
-RUN echo "localhost" >> /root/hadoop/etc/hadoop/masters && \
-    echo "/bin/sh -e /etc/init.d/ssh start" > /etc/rc.local
+RUN echo "localhost" >> /root/hadoop/etc/hadoop/masters
 COPY hadoop-env.sh /root/hadoop/etc/hadoop/hadoop-env.sh
 COPY core-site.xml /root/hadoop/etc/hadoop/core-site.xml
 COPY hdfs-site.xml /root/hadoop/etc/hadoop/hdfs-site.xml
 COPY mapred-site.xml /root/hadoop/etc/hadoop/mapred-site.xml
 COPY yarn-site.xml /root/hadoop/etc/hadoop/yarn-site.xml
+COPY ssh_init.sh /root/
+RUN sh /root/ssh_init.sh && \
+    $HADOOP_HOME/bin/hdfs namenode -format
+
+ENTRYPOINT service ssh start && \
+    $HADOOP_HOME/sbin/start-dfs.sh && \
+    $HADOOP_HOME/sbin/start-yarn.sh
