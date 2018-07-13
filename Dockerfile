@@ -56,6 +56,7 @@ ENV PATH $HADOOP_HOME/bin:$PATH
 
 RUN echo "localhost" >> /root/hadoop/etc/hadoop/masters && \
     echo "/bin/sh -e /etc/init.d/ssh start" > /etc/rc.local
+COPY hadoop-env.sh /root/hadoop/etc/hadoop/hadoop-env.sh
 COPY core-site.xml /root/hadoop/etc/hadoop/core-site.xml
 COPY hdfs-site.xml /root/hadoop/etc/hadoop/hdfs-site.xml
 COPY mapred-site.xml /root/hadoop/etc/hadoop/mapred-site.xml
