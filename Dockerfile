@@ -71,10 +71,10 @@ RUN cd $HOME && \
     conda install pip -y && \
     pip install msgpack && \
     pip install py4j && \
-    wget http://apache.mirror.cdnetworks.com/spark/spark-2.3.0/spark-2.3.0-bin-hadoop2.7.tgz && \
-    tar xvzf spark-2.3.0-bin-hadoop2.7.tgz && \
-    ln -s spark-2.3.0-bin-hadoop2.7 spark && \
-    rm spark-2.3.0-bin-hadoop2.7.tgz
+    wget http://apache.mirror.cdnetworks.com/spark/spark-2.3.1/spark-2.3.1-bin-hadoop2.7.tgz && \
+    tar xvzf spark-2.3.1-bin-hadoop2.7.tgz && \
+    ln -s spark-2.3.1-bin-hadoop2.7 spark && \
+    rm spark-2.3.1-bin-hadoop2.7.tgz
 COPY spark-env.sh /root/spark/conf/spark-env.sh
 ENV SPARK_HOME /root/spark
 ENV PYSPARK_DRIVER_PYTHON jupyter
