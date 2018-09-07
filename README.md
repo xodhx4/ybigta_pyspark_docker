@@ -19,7 +19,7 @@
 
 ### 도커 설치
 
-[참고](https://github.com/YBIGTA/EngineeringTeam/tree/master/DE_2018-2/Session/Week2/docker.pdf)
+[참고](https://github.com/xodhx4/how_to_code_together/blob/master/docker/docker.md)
 
 ### 이미지 다운로드
 
