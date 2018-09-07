@@ -2,7 +2,8 @@
 
 ## 소개
 
-와이빅타 엔지니어링 팀에서 사용하는 spark를 위한 도커 이미지 입니다.
+와이빅타 엔지니어링 팀에서 사용하는 spark를 위한 도커 이미지 입니다.  
+[참고](https://github.com/xodhx4/how_to_code_together/blob/master/docker/docker.md)
 
 ## 특징
 
@@ -17,17 +18,26 @@
 
 ## 사용법
 
-### 도커 설치
+### 1. 인스턴스 만들기
+생략
 
-[참고](https://github.com/xodhx4/how_to_code_together/blob/master/docker/docker.md)
+### 2. 레포 다운로드
+`https://github.com/xodhx4/ybigta_pyspark_docker.git`
+
+### 3. 도커 다운로드
+
+1. repo 안으로 이동한다.
+
+2. `docker_install.sh`를 실행한다.
+   `sh docker_install.sh`
+
+3. 다시 로그인 할 때부터는 sudo를 안붙여도 도커 실행 가능
 
 ### 이미지 다운로드
 
-1. ec2에 이 repo를 clone 한다.
+1. repo안으로 이동한다.
 
-2. repo안으로 이동한다.
-
-3. docker image 생성
+2. docker image 생성
 
    ```sh
    docker build --tag IMAGE_NAME_YOUWANT:VERSION_YOUWANT .
