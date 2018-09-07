@@ -22,13 +22,13 @@
 생략
 
 ### 2. 레포 다운로드
-`https://github.com/xodhx4/ybigta_pyspark_docker.git`
+`git clone https://github.com/xodhx4/ybigta_pyspark_docker.git`
 
 ### 3. 도커 다운로드
 
 1. repo 안으로 이동한다.
 
-2. `docker_install.sh`를 실행한다.
+2. `docker_install.sh`를 실행한다.  
    `sh docker_install.sh`
 
 3. 다시 로그인 할 때부터는 sudo를 안붙여도 도커 실행 가능
