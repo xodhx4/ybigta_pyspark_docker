@@ -63,6 +63,7 @@ COPY mapred-site.xml /root/hadoop/etc/hadoop/mapred-site.xml
 COPY yarn-site.xml /root/hadoop/etc/hadoop/yarn-site.xml
 COPY ssh_init.sh /root/
 COPY start.sh /root/
+WORKDIR /root
 RUN sh /root/ssh_init.sh && \
     $HADOOP_HOME/bin/hdfs namenode -format
 
@@ -83,10 +84,10 @@ ENV PATH $SPARK_HOME/bin:$PATH
 
 # Install hive
 RUN cd $HOME && \
-    wget http://apache.mirror.cdnetworks.com/hive/hive-2.3.3/apache-hive-2.3.3-bin.tar.gz && \
-    tar xvzf apache-hive-2.3.3-bin.tar.gz && \
-    ln -s apache-hive-2.3.3-bin hive && \
-    rm apache-hive-2.3.3-bin.tar.gz
+    wget http://apache.mirror.cdnetworks.com/hive/hive-2.3.4/apache-hive-2.3.4-bin.tar.gz && \
+    tar xvzf apache-hive-2.3.4-bin.tar.gz && \
+    ln -s apache-hive-2.3.4-bin hive && \
+    rm apache-hive-2.3.4-bin.tar.gz
 COPY hive-env.sh /root/hive/conf/hive-env.sh
 COPY hive-site.xml /root/hive/conf/hive-site.xml
 COPY hive_init.sh /root/
