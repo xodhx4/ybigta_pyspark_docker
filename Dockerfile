@@ -3,7 +3,6 @@ FROM ubuntu:16.04
 MAINTAINER Taeoh Kim <kimtaeoh95@gmail.com>
 
 ARG ANACONDA_VER=5.2.0
-ARG SCALA_VER=2.11
 ARG HADOOP_VER=2.9.0
 ARG SPARK_VER=2.4.3
 ARG HIVE_VER=2.3.5
@@ -31,7 +30,7 @@ ENV PATH $JAVA_HOME/bin:$PATH
 
 # Install scala
 RUN apt-get update && apt-get install -yqq \
-    scala ${SCALA_VER}
+    scala
 
 # Install protobuf
 RUN apt-get update && apt-get install -yqq \
