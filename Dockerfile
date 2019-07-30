@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -yqq \
     wget \
     bzip2 \
     git && \
-    wget https://repo.anaconda.com/archive/Anaconda3-${ANACONDE_VER}-Linux-x86_64.sh -O ~/anaconda.sh && \
+    wget https://repo.anaconda.com/archive/Anaconda3-${ANACONDA_VER}-Linux-x86_64.sh -O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
     rm ~/anaconda.sh
 ENV ANACONDA_HOME /opt/conda
