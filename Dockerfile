@@ -2,12 +2,17 @@ FROM ubuntu:16.04
 
 MAINTAINER Taeoh Kim <kimtaeoh95@gmail.com>
 
+ARG ANACONDA_VER=5.2.0
+ARG SCALA_VER=2.11
+ARG HADOOP_VER=2.9.0
+ARG SPARK_VER=2.4.3
+ARG HIVE_VER=2.3.5
 # Install anaconda 3.5.2
 RUN apt-get update && apt-get install -yqq \
     wget \
     bzip2 \
     git && \
-    wget https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh -O ~/anaconda.sh && \
+    wget https://repo.anaconda.com/archive/Anaconda3-${ANACONDE_VER}-Linux-x86_64.sh -O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
     rm ~/anaconda.sh
 ENV ANACONDA_HOME /opt/conda
@@ -26,7 +31,7 @@ ENV PATH $JAVA_HOME/bin:$PATH
 
 # Install scala
 RUN apt-get update && apt-get install -yqq \
-    scala
+    scala ${SCALA_VER}
 
 # Install protobuf
 RUN apt-get update && apt-get install -yqq \
@@ -47,10 +52,10 @@ RUN apt-get update && apt-get install -yqq \
 
 # Install hadoop
 RUN cd $HOME && \
-    wget http://apache.mirror.cdnetworks.com/hadoop/common/hadoop-2.9.0/hadoop-2.9.0.tar.gz && \
-    tar xvzf hadoop-2.9.0.tar.gz && \
-    ln -s hadoop-2.9.0 hadoop && \
-    rm hadoop-2.9.0.tar.gz
+    wget http://apache.mirror.cdnetworks.com/hadoop/common/hadoop-${HADOOP_VER}/hadoop-${HADOOP_VER}.tar.gz && \
+    tar xvzf hadoop-${HADOOP_VER}.tar.gz && \
+    ln -s hadoop-${HADOOP_VER} hadoop && \
+    rm hadoop-${HADOOP_VER}.tar.gz
 ENV HADOOP_HOME /root/hadoop
 ENV HADOOP_CONFIG_HOME $HADOOP_HOME/etc/hadoop
 ENV PATH $HADOOP_HOME/bin:$PATH
@@ -72,10 +77,10 @@ RUN cd $HOME && \
     conda install pip -y && \
     pip install msgpack && \
     pip install py4j && \
-    wget http://apache.mirror.cdnetworks.com/spark/spark-2.3.1/spark-2.3.1-bin-hadoop2.7.tgz && \
-    tar xvzf spark-2.3.1-bin-hadoop2.7.tgz && \
-    ln -s spark-2.3.1-bin-hadoop2.7 spark && \
-    rm spark-2.3.1-bin-hadoop2.7.tgz
+    wget http://apache.mirror.cdnetworks.com/spark/spark-${SPARK_VER}/spark-${SPARK_VER}-bin-hadoop2.7.tgz && \
+    tar xvzf spark-${SPARK_VER}-bin-hadoop2.7.tgz && \
+    ln -s spark-${SPARK_VER}-bin-hadoop2.7 spark && \
+    rm spark-${SPARK_VER}-bin-hadoop2.7.tgz
 COPY spark-env.sh /root/spark/conf/spark-env.sh
 ENV SPARK_HOME /root/spark
 ENV PYSPARK_DRIVER_PYTHON jupyter
@@ -84,10 +89,10 @@ ENV PATH $SPARK_HOME/bin:$PATH
 
 # Install hive
 RUN cd $HOME && \
-    wget http://apache.mirror.cdnetworks.com/hive/hive-2.3.4/apache-hive-2.3.4-bin.tar.gz && \
-    tar xvzf apache-hive-2.3.4-bin.tar.gz && \
-    ln -s apache-hive-2.3.4-bin hive && \
-    rm apache-hive-2.3.4-bin.tar.gz
+    wget http://apache.mirror.cdnetworks.com/hive/hive-2.3.4/apache-hive-${HIVE_VER}-bin.tar.gz && \
+    tar xvzf apache-hive-${HIVE_VER}-bin.tar.gz && \
+    ln -s apache-hive-${HIVE_VER}-bin hive && \
+    rm apache-hive-${HIVE_VER}-bin.tar.gz
 COPY hive-env.sh /root/hive/conf/hive-env.sh
 COPY hive-site.xml /root/hive/conf/hive-site.xml
 COPY hive_init.sh /root/
