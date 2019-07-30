@@ -1,0 +1,10 @@
+sudo: required
+services:
+  - docker
+before_install:
+  - docker --version
+install:
+  - docker build -t ybigta_pyspark:1.0 --pull=true .
+  - docker run --name test_container ybigta_pyspark:1.0
+script:
+  - docker ps | grep -i test_container
