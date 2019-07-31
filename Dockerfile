@@ -44,7 +44,7 @@ RUN apt-get update && apt-get install -yqq \
     wget https://github.com/google/protobuf/releases/download/v2.6.1/protobuf-2.6.1.tar.gz -q && \
     tar xzf protobuf-2.6.1.tar.gz && \
     cd protobuf-2.6.1 && \
-    ./configure && \
+    ./configure > /dev/null && \
     make --silent && \
     make install --silent && \
     ldconfig
@@ -88,7 +88,7 @@ ENV PATH $SPARK_HOME/bin:$PATH
 
 # Install hive
 RUN cd $HOME && \
-    wget http://apache.mirror.cdnetworks.com/hive/hive-2.3.4/apache-hive-${HIVE_VER}-bin.tar.gz -q && \
+    wget http://apache.mirror.cdnetworks.com/hive/hive-${HIVE_VER}/apache-hive-${HIVE_VER}-bin.tar.gz -q && \
     tar xzf apache-hive-${HIVE_VER}-bin.tar.gz && \
     ln -s apache-hive-${HIVE_VER}-bin hive && \
     rm apache-hive-${HIVE_VER}-bin.tar.gz
