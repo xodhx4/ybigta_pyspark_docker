@@ -2,10 +2,10 @@ FROM ubuntu:16.04
 
 MAINTAINER Taeoh Kim <kimtaeoh95@gmail.com>
 
-ARG HADOOP_VER=2.9.0
+ARG HADOOP_VER=2.7.7
 ARG SPARK_VER=2.4.3
 ARG HIVE_VER=2.3.5
-# Install anaconda 3.5.2
+
 RUN apt-get update -qq && apt-get install -yqq \
     wget \
     bzip2 \
