@@ -4,7 +4,7 @@ services:
 before_install:
   - docker --version
 install:
-  - travis_wait 30 docker build -t ybigta_pyspark:1.0 --pull=true .
+  - travis_wait 60 docker build -t ybigta_pyspark:1.0 --pull=true .
   - docker run -d --name test_container ybigta_pyspark:1.0
 script:
   - docker ps | grep -i test_container

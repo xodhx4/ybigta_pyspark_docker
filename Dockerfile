@@ -50,7 +50,7 @@ RUN apt-get update && apt-get install -yqq \
 
 # Install hadoop
 RUN cd $HOME && \
-    wget http://apache.mirror.cdnetworks.com/hadoop/common/hadoop-${HADOOP_VER}/hadoop-${HADOOP_VER}.tar.gz && \
+    wget http://apache.mirror.cdnetworks.com/hadoop/common/hadoop-${HADOOP_VER}/hadoop-${HADOOP_VER}.tar.gz -q && \
     tar xzf hadoop-${HADOOP_VER}.tar.gz && \
     ln -s hadoop-${HADOOP_VER} hadoop && \
     rm hadoop-${HADOOP_VER}.tar.gz
