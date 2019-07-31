@@ -16,7 +16,7 @@ RUN apt-get update -qq && apt-get install -yqq \
     ln -s /usr/bin/pip3 /usr/bin/pip
 
 # Install jupyter notebook
-RUN pip install jupyter
+RUN pip install --upgrade pip && pip install jupyter
 COPY jupyter_init.sh /root/
 RUN sh /root/jupyter_init.sh
 COPY jupyter_notebook_config.py /root/.jupyter/
@@ -72,7 +72,6 @@ RUN sh /root/ssh_init.sh && \
 
 # Install spark
 RUN cd $HOME && \
-    conda install pip -y && \
     pip install msgpack && \
     pip install py4j && \
     wget http://apache.mirror.cdnetworks.com/spark/spark-${SPARK_VER}/spark-${SPARK_VER}-bin-hadoop2.7.tgz -q && \
@@ -87,7 +86,7 @@ ENV PATH $SPARK_HOME/bin:$PATH
 
 # Install hive
 RUN cd $HOME && \
-    wget http://apache.mirror.cdnetworks.com/hive/hive-${HIVE_VER}/apache-hive-${HIVE_VER}-bin.tar.gz && \
+    wget http://apache.mirror.cdnetworks.com/hive/hive-${HIVE_VER}/apache-hive-${HIVE_VER}-bin.tar.gz -q && \
     tar xzf apache-hive-${HIVE_VER}-bin.tar.gz && \
     ln -s apache-hive-${HIVE_VER}-bin hive && \
     rm apache-hive-${HIVE_VER}-bin.tar.gz
