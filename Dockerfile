@@ -16,7 +16,7 @@ RUN apt-get update -qq && apt-get install -yqq \
     ln -s /usr/bin/pip3 /usr/bin/pip
 
 # Install jupyter notebook
-RUN pip install --upgrade pip && pip install jupyter
+RUN pip install jupyter
 COPY jupyter_init.sh /root/
 RUN sh /root/jupyter_init.sh
 COPY jupyter_notebook_config.py /root/.jupyter/
