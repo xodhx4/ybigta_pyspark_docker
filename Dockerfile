@@ -96,6 +96,7 @@ COPY hive-env.sh /root/hive/conf/hive-env.sh
 COPY hive-site.xml /root/hive/conf/hive-site.xml
 COPY hive_init.sh /root/
 RUN sh /root/hive_init.sh
+RUN conda install jupyter
 
 # Running start.sh when make new container
 ENTRYPOINT sh /root/start.sh
