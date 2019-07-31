@@ -87,7 +87,7 @@ ENV PATH $SPARK_HOME/bin:$PATH
 
 # Install hive
 RUN cd $HOME && \
-    wget http://apache.mirror.cdnetworks.com/hive/hive-${HIVE_VER}/apache-hive-${HIVE_VER}-bin.tar.gz -q && \
+    wget http://apache.mirror.cdnetworks.com/hive/hive-${HIVE_VER}/apache-hive-${HIVE_VER}-bin.tar.gz && \
     tar xzf apache-hive-${HIVE_VER}-bin.tar.gz && \
     ln -s apache-hive-${HIVE_VER}-bin hive && \
     rm apache-hive-${HIVE_VER}-bin.tar.gz
