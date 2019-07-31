@@ -6,7 +6,7 @@ ARG HADOOP_VER=2.9.0
 ARG SPARK_VER=2.4.3
 ARG HIVE_VER=2.3.5
 # Install anaconda 3.5.2
-RUN apt-get update && apt-get install -yqq \
+RUN apt-get update -qq && apt-get install -yqq \
     wget \
     bzip2 \
     git \
