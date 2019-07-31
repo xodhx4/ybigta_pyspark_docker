@@ -2,7 +2,6 @@ FROM ubuntu:16.04
 
 MAINTAINER Taeoh Kim <kimtaeoh95@gmail.com>
 
-ARG ANACONDA_VER=2019.07
 ARG HADOOP_VER=2.9.0
 ARG SPARK_VER=2.4.3
 ARG HIVE_VER=2.3.5
@@ -11,11 +10,7 @@ RUN apt-get update && apt-get install -yqq \
     wget \
     bzip2 \
     git && \
-    wget https://repo.anaconda.com/archive/Anaconda3-${ANACONDA_VER}-Linux-x86_64.sh -O ~/anaconda.sh -q && \
-    /bin/bash ~/anaconda.sh -b -p /opt/conda && \
-    rm ~/anaconda.sh
-ENV ANACONDA_HOME /opt/conda
-ENV PATH $ANACONDA_HOME/bin:$PATH
+    pip install jupyter
 
 # Install jupyter notebook
 COPY jupyter_init.sh /root/
