@@ -42,7 +42,7 @@ RUN apt-get update && apt-get install -yqq \
     update-rc.d ssh defaults && \
     cd /usr/local && \
     wget https://github.com/google/protobuf/releases/download/v2.6.1/protobuf-2.6.1.tar.gz -q && \
-    tar xzf protobuf-2.6.1.tar.gz -q && \
+    tar xzf protobuf-2.6.1.tar.gz && \
     cd protobuf-2.6.1 && \
     ./configure && \
     make --silent && \
