@@ -1,5 +1,5 @@
 # YBIGTA SPARK DOCKER IMAGE
-
+[![Build Status](https://travis-ci.org/xodhx4/ybigta_pyspark_docker.svg?branch=master)](https://travis-ci.org/xodhx4/ybigta_pyspark_docker)
 ## 소개
 
 와이빅타 엔지니어링 팀에서 사용하는 spark를 위한 도커 이미지 입니다.  
@@ -10,7 +10,7 @@
 - 아나콘다 3.5.2
 - 자바 openjdk 8
 - 하둡 2.9
-- 스파크 2.3.0
+- 스파크 2.4.3
 - pyspark
 - 하이브 2.3.3
 - 분산 처리가 아닌 로컬로 실행
