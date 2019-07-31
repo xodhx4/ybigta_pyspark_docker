@@ -9,10 +9,14 @@ ARG HIVE_VER=2.3.5
 RUN apt-get update && apt-get install -yqq \
     wget \
     bzip2 \
-    git && \
-    pip install jupyter
+    git \
+    python3 \
+    python3-pip && \
+    ln -s /usr/bin/python3 /usr/bin/python && \
+    ln -s /usr/bin/pip3 /usr/bin/pip
 
 # Install jupyter notebook
+RUN pip install jupyter
 COPY jupyter_init.sh /root/
 RUN sh /root/jupyter_init.sh
 COPY jupyter_notebook_config.py /root/.jupyter/
