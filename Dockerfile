@@ -4,7 +4,7 @@ MAINTAINER Taeoh Kim <kimtaeoh95@gmail.com>
 
 ARG HADOOP_VER=2.7.7
 ARG SPARK_VER=2.4.3
-ARG HIVE_VER=2.3.5
+ARG HIVE_VER=2.3.6
 
 RUN apt-get update -qq && apt-get install -yqq \
     wget \
